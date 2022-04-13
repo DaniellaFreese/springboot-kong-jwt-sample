@@ -1,0 +1,35 @@
+_format_version: "1.1"
+_transform: true
+
+services:
+  - host: mockbin.org
+    name: example_service
+    port: 80
+    protocol: http
+    routes:
+      - name: example_route
+        paths:
+          - /mock
+        strip_path: true
+  - host: 10.251.1.140
+    name: spring-boot-noSecurity
+    port: 8080
+    protocol: http
+    routes:
+      - name: spring
+        paths:
+          - /spring
+        methods:
+          - GET
+        hosts:
+          - example.com
+        strip_path: true
+        plugins:
+          - name: jwt
+consumers:
+  - custom_id: consumer123
+    username: dev
+    jwt_secrets:
+      - algorithm: HS256
+        key: RHDNQFDePhIULbX4lmlTT5gS0wJ7xRNK
+        secret: fS4X0FcM7rWPimRNreTzF0vL57t7b3Gl

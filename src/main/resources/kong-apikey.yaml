@@ -1,0 +1,33 @@
+_format_version: "1.1"
+_transform: true
+
+services:
+  - host: mockbin.org
+    name: example_service
+    port: 80
+    protocol: http
+    routes:
+      - name: example_route
+        paths:
+          - /mock
+        strip_path: true
+  - host: 10.251.1.140
+    name: spring-boot-noSecurity
+    port: 8080
+    protocol: http
+    routes:
+      - name: spring
+        paths:
+          - /spring/hello
+        methods:
+          - GET
+        hosts:
+          - example.com
+        strip_path: true
+        plugins:
+          - name: key-auth
+consumers:
+  - custom_id: consumer
+    username: consumer
+    keyauth_credentials:
+      - key: apiKey
