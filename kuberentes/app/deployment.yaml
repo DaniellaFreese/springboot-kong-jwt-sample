@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springboot-kong
+  labels:
+    app: springboot-kong
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: springboot-kong
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: springboot-kong
+        version: v1
+    spec:
+      containers:
+      - name: springboot-kong
+        image: springboot-kong:local
+        imagePullPolicy: IfNotPresent
+        ports:
+          - containerPort: 8778
+            name: jolokia
+          - containerPort: 8080
+            name: http 

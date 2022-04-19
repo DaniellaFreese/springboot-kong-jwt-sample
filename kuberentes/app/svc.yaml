@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: springboot-kong
+  labels:
+    app: springboot-kong
+    version: v1
+spec:
+  ports:
+  - port: 8080
+    name: http
+  selector:
+    app: springboot-kong
